@@ -22,6 +22,7 @@ export default function Home({ searchParams }: { searchParams: { color?: string 
         <a href="?color=purple-500" className="w-10 h-10 rounded-full bg-purple-500 border-2 border-black"></a>
         <a href="?color=red-400" className="w-10 h-10 rounded-full bg-red-400 border-2 border-black"></a>
         <a href="?color=green-400" className="w-10 h-10 rounded-full bg-green-400 border-2 border-black"></a>
+        <a href="?color=green-400" className="w-10 h-10 rounded-full bg-amber-300-400 border-2 border-black"></a>
       </div>
     </main>
   );
