@@ -1,23 +1,8 @@
-/**
- * @file layout.tsx
- * @description Layout principal de la aplicación
- *
- * Este archivo implementa:
- * 1. Patrón de Layout: Estructura común para todas las páginas
- * 2. Patrón de Proveedor: Proporciona contexto y configuración global
- * 3. Patrón de Composición: Combina múltiples componentes para crear la estructura
- *
- * @pattern Layout
- * @pattern Provider
- * @pattern Composition
- * @principle Single Responsibility (SOLID)
- */
-
 import type React from "react"
 import type { Metadata } from "next"
 import { PT_Serif } from "next/font/google"
 import "./globals.css"
-import Navbar from "@/components/navbar-fixed"
+import Navbar from "@/components/navbar"
 import { ThemeProvider } from "@/components/theme-provider"
 
 /**
@@ -53,6 +38,7 @@ export const metadata: Metadata = {
   keywords: "desarrollo web, frontend, react, next.js, portfolio, ingeniería de software, motociclismo",
   authors: [{ name: "Anderson Ojeda" }],
   creator: "Anderson Ojeda",
+    generator: 'v0.dev'
 }
 
 /**
@@ -112,13 +98,6 @@ export default function RootLayout({
         />
       </head>
       <body className="font-serif">
-        {/* 
-          ThemeProvider: Proporciona funcionalidad de tema (claro/oscuro)
-          
-          @pattern Provider
-          @pattern Context
-          @principle Dependency Inversion (SOLID)
-        */}
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -126,20 +105,17 @@ export default function RootLayout({
           disableTransitionOnChange={false}
           storageKey="theme"
         >
-          {/* Barra de navegación */}
-          <Navbar />
-
-          {/* Contenido principal (páginas) */}
-          {children}
-
-          {/* Pie de página */}
-          <footer className="py-6 border-t theme-transition">
-            <div className="container mx-auto px-4 text-center">
-              <p className="text-sm text-muted-foreground">
-                © {new Date().getFullYear()} Anderson Ojeda. Todos los derechos reservados.
-              </p>
-            </div>
-          </footer>
+          <div className="page-wrapper">
+            <Navbar />
+            {children}
+            <footer className="py-6 border-t theme-transition" role="contentinfo">
+              <div className="container mx-auto px-4 text-center">
+                <small className="text-sm text-muted-foreground">
+                  © {new Date().getFullYear()} Anderson Ojeda. Todos los derechos reservados.
+                </small>
+              </div>
+            </footer>
+          </div>
         </ThemeProvider>
       </body>
     </html>
