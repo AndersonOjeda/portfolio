@@ -176,122 +176,7 @@ export default function Contact() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Formulario de contacto */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="lg:col-span-2"
-          >
-            <Card className="border-primary/10 hover:border-primary/30 transition-colors">
-              <CardContent className="p-6 text-center sm:text-left">
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {/* Campo de nombre */}
-                    <div className="space-y-2">
-                      <label htmlFor="name" className="text-sm font-medium block text-center sm:text-left">
-                        Nombre
-                      </label>
-                      <Input
-                        id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        placeholder="Tu nombre"
-                        className={errors.name ? "border-red-500" : ""}
-                      />
-                      {errors.name && (
-                        <p className="text-xs text-red-500 flex items-center mt-1 justify-center sm:justify-start">
-                          <AlertCircle className="h-3 w-3 mr-1" /> {errors.name}
-                        </p>
-                      )}
-                    </div>
 
-                    {/* Campo de email */}
-                    <div className="space-y-2">
-                      <label htmlFor="email" className="text-sm font-medium block text-center sm:text-left">
-                        Email
-                      </label>
-                      <Input
-                        id="email"
-                        name="email"
-                        type="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        placeholder="tu@email.com"
-                        className={errors.email ? "border-red-500" : ""}
-                      />
-                      {errors.email && (
-                        <p className="text-xs text-red-500 flex items-center mt-1 justify-center sm:justify-start">
-                          <AlertCircle className="h-3 w-3 mr-1" /> {errors.email}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Campo de asunto */}
-                  <div className="space-y-2">
-                    <label htmlFor="subject" className="text-sm font-medium block text-center sm:text-left">
-                      Asunto
-                    </label>
-                    <Input
-                      id="subject"
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleChange}
-                      placeholder="Asunto del mensaje"
-                      className={errors.subject ? "border-red-500" : ""}
-                    />
-                    {errors.subject && (
-                      <p className="text-xs text-red-500 flex items-center mt-1 justify-center sm:justify-start">
-                        <AlertCircle className="h-3 w-3 mr-1" /> {errors.subject}
-                      </p>
-                    )}
-                  </div>
-
-                  {/* Campo de mensaje */}
-                  <div className="space-y-2">
-                    <label htmlFor="message" className="text-sm font-medium block text-center sm:text-left">
-                      Mensaje
-                    </label>
-                    <Textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      placeholder="Tu mensaje"
-                      rows={5}
-                      className={errors.message ? "border-red-500" : ""}
-                    />
-                    {errors.message && (
-                      <p className="text-xs text-red-500 flex items-center mt-1 justify-center sm:justify-start">
-                        <AlertCircle className="h-3 w-3 mr-1" /> {errors.message}
-                      </p>
-                    )}
-                  </div>
-
-                  {/* Botón de envío */}
-                  <Button
-                    type="submit"
-                    className="w-full bg-primary hover:bg-primary/90 glow-border"
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting ? (
-                      <>
-                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                        Enviando...
-                      </>
-                    ) : (
-                      <>
-                        <Send className="mr-2 h-4 w-4" />
-                        Enviar Mensaje
-                      </>
-                    )}
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
-          </motion.div>
 
           {/* Información de contacto */}
           <motion.div
@@ -299,7 +184,9 @@ export default function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
+            className="lg:col-span-3"
           >
+            {/* Aquí permanecen solo los iconos y enlaces de contacto */}
             <Card className="h-full border-primary/10 hover:border-primary/30 transition-colors">
               <CardContent className="p-6 flex flex-col justify-between h-full">
                 <div className="space-y-6">
@@ -316,7 +203,7 @@ export default function Contact() {
                     <div>
                       <h4 className="font-medium">Email</h4>
                       <a
-                        href="mailto:anderoz2508@gmail.com"
+                        href="https://mail.google.com/mail/?view=cm&fs=1&to=anderoz2508@gmail.com"
                         className="text-sm text-muted-foreground hover:text-primary transition-colors"
                       >
                         anderoz2508@gmail.com
@@ -414,7 +301,7 @@ export default function Contact() {
                       asChild
                       className="rounded-full border-primary/30 hover:bg-primary hover:text-white transition-colors"
                     >
-                      <a href="https://www.instagram.com/anderoz2508/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                      <a href="https://www.instagram.com/anderoz2508/?hl=es" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="20"

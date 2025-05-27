@@ -464,8 +464,8 @@ export default function Testimonials() {
           </div>
         )}
 
-        {/* Cuadrícula de testimonios - Mostrar solo los primeros 3 */}
-        {testimonials.length > 0 && (
+        {/* Cuadrícula de testimonios con pestaña desplegable si hay 4 o más */}
+        {testimonials.length > 0 && testimonials.length < 4 && (
           <motion.div
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
             variants={containerVariants}
@@ -473,7 +473,7 @@ export default function Testimonials() {
             whileInView="visible"
             viewport={{ once: true }}
           >
-            {testimonials.slice(0, showAllTestimonials ? testimonials.length : 3).map((testimonial) => (
+            {testimonials.map((testimonial) => (
               <motion.div key={testimonial.id} variants={itemVariants} className="hover-lift">
                 <Card
                   className={`h-full border-primary/10 hover:border-primary/30 transition-colors ${
@@ -515,25 +515,58 @@ export default function Testimonials() {
           </motion.div>
         )}
 
-        {/* Botón para mostrar más testimonios */}
-        {testimonials.length > 3 && (
-          <div className="text-center mt-8">
-            <Button
-              variant="outline"
-              onClick={() => setShowAllTestimonials(!showAllTestimonials)}
-              className="border-primary/30 hover:bg-primary/10 hover:text-primary"
+        {/* Pestaña desplegable para testimonios si hay 4 o más */}
+        {testimonials.length >= 4 && (
+          <details className="mt-8">
+            <summary className="cursor-pointer text-primary font-semibold text-center mb-4">Ver todos los testimonios</summary>
+            <motion.div
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4"
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
             >
-              {showAllTestimonials ? (
-                <>
-                  Mostrar menos <ChevronUp className="ml-2 h-4 w-4" />
-                </>
-              ) : (
-                <>
-                  Ver {testimonials.length - 3} testimonios más <ChevronDown className="ml-2 h-4 w-4" />
-                </>
-              )}
-            </Button>
-          </div>
+              {testimonials.map((testimonial) => (
+                <motion.div key={testimonial.id} variants={itemVariants} className="hover-lift">
+                  <Card
+                    className={`h-full border-primary/10 hover:border-primary/30 transition-colors ${
+                      testimonial.type === "passion" ? "bg-primary/5" : ""
+                    }`}
+                  >
+                    <CardContent className="p-6">
+                      {/* Avatar y datos de la persona */}
+                      <div className="flex items-center gap-4 mb-4 justify-center sm:justify-start">
+                        <Avatar>
+                          <AvatarImage src={testimonial.avatar || "/placeholder.svg"} alt={testimonial.name} />
+                          <AvatarFallback className="bg-primary/10 text-primary">
+                            {testimonial.name.charAt(0)}
+                          </AvatarFallback>
+                        </Avatar>
+                        <div>
+                          <h3 className="font-medium">{testimonial.name}</h3>
+                          <p className="text-sm text-muted-foreground flex items-center">
+                            {testimonial.role}
+                            {testimonial.type === "passion" && (
+                              <span className="ml-1 text-primary">
+                                <Bike className="h-3 w-3 inline-block ml-1" />
+                              </span>
+                            )}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Contenido del testimonio */}
+                      <div className="relative text-center sm:text-left">
+                        <Quote className="h-6 w-6 text-primary/20 absolute -top-2 -left-2 hidden sm:block" />
+                        <Quote className="h-6 w-6 text-primary/20 mx-auto mb-2 sm:hidden" />
+                        <p className="text-sm text-muted-foreground pt-2 sm:pl-4">{testimonial.content}</p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </motion.div>
+          </details>
         )}
       </div>
     </section>
