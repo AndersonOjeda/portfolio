@@ -16,47 +16,40 @@ import Image from "next/image"
  */
 const projects = [
   {
-    title: "MotoTracker App",
+    title: "Mercedario",
     description:
-      "Aplicación para entusiastas de las motos que permite registrar rutas, compartir experiencias y conectar con otros motociclistas.",
-    image: "/placeholder.svg?height=300&width=500",
-    tags: ["React Native", "Firebase", "Google Maps API", "Redux"],
+      "Mercedario es una solución tecnológica desarrollada con el objetivo de optimizar la gestión de recursos dentro de establecimientos gastronómicos, específicamente en lo relacionado con el uso, seguimiento y control de ingredientes desde el inventario hasta la preparación de platos. Desarrollado con Python, Tkinter y HTML. La base de datos SQL está correctamente conectada y funcionando para el control de inventarios y operaciones.",
+    image: "/images/logo-mercedario.png",
+    tags: ["Python", "Tkinter", "HTML", "SQL"],
     githubUrl: "#",
     liveUrl: "#",
     featured: true,
-    passion: "motos",
+    passion: "gastronomía",
   },
   {
-    title: "E-commerce Platform",
-    description: "Plataforma de comercio electrónico con carrito de compras, gestión de usuarios y pasarela de pagos.",
-    image: "/placeholder.svg?height=300&width=500",
-    tags: ["Next.js", "Tailwind CSS", "Stripe", "MongoDB"],
-    githubUrl: "#",
-    liveUrl: "#",
-    featured: false,
-    passion: null,
-  },
-  {
-    title: "Adventure Logger",
+    title: "Presupuesto Personal",
     description:
-      "Aplicación web para registrar y compartir aventuras extremas, con mapas interactivos y estadísticas personales.",
-    image: "/placeholder.svg?height=300&width=500",
-    tags: ["React", "Node.js", "Express", "MongoDB"],
-    githubUrl: "#",
+      "Presupuesto Personal es una aplicación web desarrollada con Next.js, Node.js y Tailwind CSS, orientada a facilitar la gestión financiera individual de manera práctica y visual.",
+    image: "/images/logo-presupuesto_personal.png",
+    tags: ["Next.js", "Node.js", "Tailwind CSS"],
+    githubUrl: "https://github.com/AndersonOjeda/Presupuesto-Personal.git",
     liveUrl: "#",
     featured: true,
-    passion: "aventuras",
+    passion: "finanzas",
   },
   {
-    title: "Weather Dashboard",
-    description: "Dashboard para visualizar datos meteorológicos en tiempo real con gráficos interactivos.",
-    image: "/placeholder.svg?height=300&width=500",
-    tags: ["JavaScript", "Chart.js", "OpenWeather API"],
-    githubUrl: "#",
+    title: "classmate",
+    description:
+      "classmate tiene como objetivo principal facilitar la administración académica de una institución educativa, permitiendo a los profesores, estudiantes y administradores realizar sus tareas de manera eficiente y segura. Esta hecha con Python, Django, CSS, HTML, SQL y Tailwind.",
+    image: "/images/logo-classmate.png",
+    tags: ["Python", "Django", "CSS", "HTML", "SQL", "Tailwind"],
+    githubUrl: "https://github.com/migueltovarb/ISWElectiva110202-10.git",
     liveUrl: "#",
-    featured: false,
-    passion: null,
+    featured: true,
+    passion: "educación",
   },
+
+  
 ]
 
 /**
@@ -104,9 +97,9 @@ export default function Projects() {
    */
   const getPassionIcon = (passion: string | null) => {
     switch (passion) {
-      case "motos":
+      case "educación":
         return <Bike className="h-4 w-4 mr-1" />
-      case "aventuras":
+      case "finanzas":
         return <Mountain className="h-4 w-4 mr-1" />
       default:
         return null
@@ -142,86 +135,68 @@ export default function Projects() {
         >
           {projects.map((project, index) => (
             <motion.div key={project.title} variants={itemVariants} className="hover-lift">
-              <Card className="h-full overflow-hidden border-primary/10 hover:border-primary/30 transition-colors">
-                {/* Imagen del proyecto */}
-                <div className="relative h-48 w-full overflow-hidden group">
+              <div className="flex flex-col items-center">
+                <div className="relative w-full h-48 mb-0">
                   <Image
-                    src={project.image || "/placeholder.svg"}
+                    src={project.image}
                     alt={project.title}
                     fill
-                    className="object-cover transition-transform group-hover:scale-105 duration-500"
+                    className="object-cover rounded-t-lg shadow-lg bg-white"
+                    style={{ position: "absolute" }}
                   />
-                  {/* Insignia de proyecto destacado */}
-                  {project.featured && (
-                    <div className="absolute top-2 right-2 bg-primary text-white text-xs px-2 py-1 rounded-full flex items-center">
-                      <Star className="h-3 w-3 mr-1" /> Destacado
-                    </div>
-                  )}
-
-                  {/* Insignia de pasión relacionada */}
-                  {project.passion && (
-                    <div className="absolute top-2 left-2 bg-primary/80 text-white text-xs px-2 py-1 rounded-full flex items-center">
-                      {getPassionIcon(project.passion)}
-                      {project.passion === "motos" ? "Motociclismo" : "Aventura"}
-                    </div>
-                  )}
                 </div>
-
-                {/* Contenido del proyecto */}
-                <CardHeader className="text-center sm:text-left">
-                  <CardTitle className="flex items-center justify-center sm:justify-start">
-                    {project.title}
+                <Card className="h-full overflow-hidden border-primary/10 hover:border-primary/30 transition-colors w-full">
+                  <div className="relative h-0">
                     {project.featured && (
-                      <span className="ml-2 text-primary">
-                        <Star className="h-4 w-4 inline" />
-                      </span>
+                      <div className="absolute top-2 right-2 bg-primary text-white text-xs px-2 py-1 rounded-full flex items-center">
+                        <Star className="h-3 w-3 mr-1" /> Destacado
+                      </div>
                     )}
-                    {project.passion === "motos" && (
-                      <span className="ml-2 text-primary">
-                        <Bike className="h-4 w-4 inline" />
-                      </span>
+                    {project.passion && (
+                      <div className="absolute top-2 left-2 bg-primary/80 text-white text-xs px-2 py-1 rounded-full flex items-center">
+                        {getPassionIcon(project.passion)}
+                        {project.passion === "motos" ? "Motociclismo" : project.passion === "finanzas" ? "Finanzas" : project.passion === "educación" ? "Educación" : "Aventura"}
+                      </div>
                     )}
-                    {project.passion === "aventuras" && (
-                      <span className="ml-2 text-primary">
-                        <Zap className="h-4 w-4 inline" />
-                      </span>
-                    )}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="text-center sm:text-left">
-                  <p className="text-muted-foreground mb-4">{project.description}</p>
-                  <div className="flex flex-wrap gap-2 justify-center sm:justify-start">
-                    {project.tags.map((tag) => (
-                      <Badge
-                        key={tag}
-                        variant="outline"
-                        className="border-primary/20 bg-primary/5 text-primary hover:bg-primary/10"
-                      >
-                        {tag}
-                      </Badge>
-                    ))}
                   </div>
-                </CardContent>
-
-                {/* Botones de acción */}
-                <CardFooter className="flex justify-center sm:justify-between flex-wrap gap-2">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    asChild
-                    className="border-primary/30 hover:bg-primary/10 hover:text-primary"
-                  >
-                    <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                      <Github className="mr-2 h-4 w-4" /> Código
-                    </a>
-                  </Button>
-                  <Button size="sm" asChild className="bg-primary hover:bg-primary/90">
-                    <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                      <ExternalLink className="mr-2 h-4 w-4" /> Demo
-                    </a>
-                  </Button>
-                </CardFooter>
-              </Card>
+                  <CardHeader className="text-center sm:text-left">
+                    <CardTitle className="flex items-center justify-center sm:justify-start">
+                      {project.title}
+                      {project.featured && (
+                        <span className="ml-2 text-primary">
+                          <Star className="h-4 w-4 inline" />
+                        </span>
+                      )}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="text-center sm:text-left">
+                    <p className="text-muted-foreground mb-4">{project.description}</p>
+                    <div className="flex flex-wrap gap-2 justify-center sm:justify-start">
+                      {project.tags.map((tag) => (
+                        <Badge
+                          key={tag}
+                          variant="outline"
+                          className="border-primary/20 bg-primary/5 text-primary hover:bg-primary/10"
+                        >
+                          {tag}
+                        </Badge>
+                      ))}
+                    </div>
+                  </CardContent>
+                  <CardFooter className="flex justify-center sm:justify-between flex-wrap gap-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      asChild
+                      className="border-primary/30 hover:bg-primary/10 hover:text-primary"
+                    >
+                      <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                        <Github className="mr-2 h-4 w-4" /> Código
+                      </a>
+                    </Button>
+                  </CardFooter>
+                </Card>
+              </div>
             </motion.div>
           ))}
         </motion.div>
