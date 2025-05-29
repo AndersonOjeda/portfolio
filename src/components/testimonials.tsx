@@ -248,7 +248,7 @@ export default function Testimonials() {
         name: testimonialForm.name,
         role: testimonialForm.role,
         content: testimonialForm.content,
-        avatar: `/placeholder.svg?height=100&width=100&text=${testimonialForm.name.charAt(0)}`,
+        avatar: "/images/profile.png",
         date: new Date().toISOString(),
       }
 
@@ -271,7 +271,7 @@ export default function Testimonials() {
           name: testimonialForm.name,
           role: testimonialForm.role,
           content: testimonialForm.content,
-          avatar: `/placeholder.svg?height=100&width=100&text=${testimonialForm.name.charAt(0)}`,
+          avatar: "/images/profile.png",
           date: data.createdAt || new Date().toISOString(),
         }
         setTestimonials([dbTestimonial, ...testimonials])
@@ -505,7 +505,7 @@ export default function Testimonials() {
                     {/* Avatar y datos de la persona */}
                     <div className="flex items-center gap-4 mb-4 justify-center sm:justify-start">
                       <Avatar>
-                        <AvatarImage src={testimonial.avatar || "/placeholder.svg"} alt={testimonial.name} />
+                        <AvatarImage src={testimonial.avatar || "/images/profile.png"} alt={testimonial.name} />
                         <AvatarFallback className="bg-primary/10 text-primary">
                           {testimonial.name.charAt(0)}
                         </AvatarFallback>
@@ -558,7 +558,7 @@ export default function Testimonials() {
                       {/* Avatar y datos de la persona */}
                       <div className="flex items-center gap-4 mb-4 justify-center sm:justify-start">
                         <Avatar>
-                          <AvatarImage src={testimonial.avatar || "/placeholder.svg"} alt={testimonial.name} />
+                          <AvatarImage src={testimonial.avatar || "/images/profile.png"} alt={testimonial.name} />
                           <AvatarFallback className="bg-primary/10 text-primary">
                             {testimonial.name.charAt(0)}
                           </AvatarFallback>
