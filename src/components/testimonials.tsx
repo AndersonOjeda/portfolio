@@ -252,27 +252,48 @@ export default function Testimonials() {
         date: new Date().toISOString(),
       }
 
-      // Añadir el testimonio al inicio de la lista
-      const updatedTestimonials = [newTestimonial, ...testimonials]
-      setTestimonials(updatedTestimonials)
-
-      // Guardar en localStorage
-      localStorage.setItem("userTestimonials", JSON.stringify(updatedTestimonials))
-
-      // Mostrar notificación de éxito
-      toast({
-        title: "Testimonio añadido",
-        description: "Tu testimonio ha sido añadido y ya es visible en la página.",
+            // Enviar el testimonio a la API para persistencia en base de datos
+      const response = await fetch("/api/send-testimonial", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: testimonialForm.name,
+          role: testimonialForm.role,
+          content: testimonialForm.content,
+          email: testimonialForm.email,
+        }),
       })
-
-      // Cerrar el diálogo y resetear el formulario
-      setIsDialogOpen(false)
-      setTestimonialForm({
-        name: "",
-        role: "",
-        content: "",
-        email: "",
-      })
+      if (response.ok) {
+        // Obtener el testimonio guardado (con id y fecha de la base de datos)
+        const data = await response.json()
+        const dbTestimonial: Testimonial = {
+          id: data.testimonialId?.toString() || testimonialId,
+          name: testimonialForm.name,
+          role: testimonialForm.role,
+          content: testimonialForm.content,
+          avatar: `/placeholder.svg?height=100&width=100&text=${testimonialForm.name.charAt(0)}`,
+          date: data.createdAt || new Date().toISOString(),
+        }
+        setTestimonials([dbTestimonial, ...testimonials])
+        toast({
+          title: "Testimonio añadido",
+          description: "Tu testimonio ha sido añadido y ya es visible en la página.",
+        })
+        setIsDialogOpen(false)
+        setTestimonialForm({
+          name: "",
+          role: "",
+          content: "",
+          email: "",
+        })
+      } else {
+        const errorData = await response.json()
+        toast({
+          title: "Error al añadir",
+          description: errorData.error || "Hubo un problema al añadir tu testimonio. Por favor, inténtalo de nuevo.",
+          variant: "destructive",
+        })
+      }
     } catch (error) {
       console.error("Error al añadir el testimonio:", error)
 

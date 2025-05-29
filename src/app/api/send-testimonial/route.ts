@@ -1,7 +1,10 @@
 import { NextResponse } from "next/server"
-import { Client } from "pg"
+import { Client } from 'pg';
+// Add type declarations for pg module
+
 
 const connectionString = process.env.DATABASE_URL
+
 
 export async function POST(request: Request) {
   try {
