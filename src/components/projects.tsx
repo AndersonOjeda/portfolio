@@ -32,7 +32,7 @@ const projects = [
       "Presupuesto Personal es una aplicación web desarrollada con Next.js, Node.js y Tailwind CSS, orientada a facilitar la gestión financiera individual de manera práctica y visual.",
     image: "/images/logo-presupuesto_personal.png",
     tags: ["Next.js", "Node.js", "Tailwind CSS"],
-    githubUrl: "https://github.com/AndersonOjeda/Presupuesto-Personal.git",
+    githubUrl: "https://github.com/AndersonOjeda/Presupuesto-Personal",
     liveUrl: "#",
     featured: true,
     passion: "finanzas",
