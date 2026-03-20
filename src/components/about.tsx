@@ -87,9 +87,8 @@ export default function About() {
   // Variantes de animación para el contenedor
   // Implementa el patrón de Configuración para definir comportamientos reutilizables
   const containerVariants = {
-    hidden: { opacity: 0 },
+    hidden: {},
     visible: {
-      opacity: 1,
       transition: {
         staggerChildren: 0.1, // Efecto escalonado para los hijos
       },
@@ -98,10 +97,9 @@ export default function About() {
 
   // Variantes de animación para los elementos hijos
   const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
+    hidden: { y: 20 },
     visible: {
       y: 0,
-      opacity: 1,
     },
   }
 
@@ -111,8 +109,8 @@ export default function About() {
       <div className="container mx-auto px-4">
         {/* Encabezado de sección - Animación de entrada */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ y: 20 }}
+          whileInView={{ y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }} // Solo anima una vez
           className="text-center mb-12"
@@ -179,7 +177,7 @@ export default function About() {
           whileInView="visible"
           viewport={{ once: true }}
         >
-          {skills.map((skill, index) => (
+          {skills.map((skill) => (
             <motion.div key={skill.name} variants={itemVariants} className="hover-lift">
               <Card className="h-full border-primary/10 hover:border-primary/30 transition-colors">
                 <CardContent className="p-6 flex flex-col items-center text-center">
@@ -194,8 +192,8 @@ export default function About() {
 
         {/* Sección de pasiones - Personalización */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ y: 20 }}
+          whileInView={{ y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
           viewport={{ once: true }}
           className="mt-16"
@@ -205,8 +203,8 @@ export default function About() {
             {passions.map((passion, index) => (
               <motion.div
                 key={passion.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ y: 20 }}
+                whileInView={{ y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
                 viewport={{ once: true }}
                 className="hover-lift"
@@ -225,8 +223,8 @@ export default function About() {
 
         {/* Trayectoria y estadísticas */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ y: 20 }}
+          whileInView={{ y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
           viewport={{ once: true }}
           className="mt-16 grid md:grid-cols-2 gap-8 items-center"
