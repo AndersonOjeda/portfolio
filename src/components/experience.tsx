@@ -58,9 +58,8 @@ const workData = []
 export default function Experience() {
   // Variantes de animación para el contenedor
   const containerVariants = {
-    hidden: { opacity: 0 },
+    hidden: {},
     visible: {
-      opacity: 1,
       transition: {
         staggerChildren: 0.2,
       },
@@ -69,10 +68,9 @@ export default function Experience() {
 
   // Variantes de animación para los elementos hijos
   const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
+    hidden: { y: 20 },
     visible: {
       y: 0,
-      opacity: 1,
     },
   }
 
@@ -81,8 +79,8 @@ export default function Experience() {
       <div className="container mx-auto px-4">
         {/* Encabezado de sección */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ y: 20 }}
+          whileInView={{ y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
           className="text-center mb-12"
@@ -172,8 +170,8 @@ export default function Experience() {
 
         {/* Línea de tiempo - Implementación visual de la trayectoria */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ y: 20 }}
+          whileInView={{ y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
           viewport={{ once: true }}
           className="mt-16"
