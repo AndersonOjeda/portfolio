@@ -72,14 +72,16 @@ export default function Hero() {
 
         {/* Elementos flotantes - Patrón de Animación */}
         <motion.div
-          className="hidden md:block absolute top-[15%] left-[15%] text-primary/20"
+          className="hidden md:block absolute top-[15%] left-[15%] text-primary/70"
+          aria-hidden="true"
           variants={floatingVariants}
           animate="animate"
         >
           <Code size={40} />
         </motion.div>
         <motion.div
-          className="hidden md:block absolute bottom-[20%] right-[20%] text-primary/20"
+          className="hidden md:block absolute bottom-[20%] right-[20%] text-primary/70"
+          aria-hidden="true"
           variants={floatingVariants}
           animate="animate"
           transition={{ delay: 1 }}
@@ -89,7 +91,8 @@ export default function Hero() {
 
         {/* Elementos relacionados con pasiones - Personalización */}
         <motion.div
-          className="hidden md:block absolute top-[40%] right-[15%] text-primary/20"
+          className="hidden md:block absolute top-[40%] right-[15%] text-primary/70"
+          aria-hidden="true"
           variants={floatingVariants}
           animate="animate"
           transition={{ delay: 0.5 }}
@@ -97,7 +100,8 @@ export default function Hero() {
           <Bike size={50} /> {/* Icono de moto */}
         </motion.div>
         <motion.div
-          className="hidden md:block absolute bottom-[40%] left-[10%] text-primary/20"
+          className="hidden md:block absolute bottom-[40%] left-[10%] text-primary/70"
+          aria-hidden="true"
           variants={floatingVariants}
           animate="animate"
           transition={{ delay: 1.5 }}

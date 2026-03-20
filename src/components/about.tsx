@@ -128,9 +128,11 @@ export default function About() {
 
         {/* Imagen centrada entre la descripción y las pasiones */}
         <div className="flex justify-center my-12">
-          <div
-            className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary shadow-lg cursor-pointer"
+          <button
+            type="button"
+            className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary shadow-lg cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             onClick={() => setOpen(true)}
+            aria-label="Abrir foto personal en tamaño grande"
             title="Haz clic para ver la foto en grande"
           >
             <Image
@@ -140,7 +142,7 @@ export default function About() {
               className="object-cover object-[50%_35%]"
               priority
             />
-          </div>
+          </button>
         </div>
 
         {/* Modal para mostrar la imagen en grande */}
